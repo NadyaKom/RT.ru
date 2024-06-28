@@ -18,6 +18,8 @@ def test_reg_page_registration(browser_reg_page):
     input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
 
+    assert browser_reg_page.find_element(*RegPageLoc.LOCATOR_REGISTRATION_CODE_FIELD).text == 'Подтверждение email'
+    print("\nПереход на страницу получения кода подтверждения прошел успешно ")
 
 def test_reg_page_no_data(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
