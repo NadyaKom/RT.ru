@@ -197,7 +197,7 @@ def test_reg_page_invalid_mail(browser_reg_page):
 
     print("\n Появилось сообщение об ошибке ввода адреса электронной почты или номера мобильного телефона ")
 
-def test_reg_page_invalid_mail(browser_reg_page):
+def test_reg_page_invalid_phone(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
     input_field[0].send_keys(valid_name)
     input_field[1].send_keys(valid_surname)
@@ -213,13 +213,13 @@ def test_reg_page_invalid_mail(browser_reg_page):
     print("\n Появилось сообщение об ошибке ввода адреса электронной почты или номера мобильного телефона ")
  
 
-def test_reg_page_invalid_password(browser_reg_page):
+def test_reg_page_invalid_password_short(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys('12345')
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(invalid_pass_short)
+    input_field[5].send_keys(invalid_pass_short)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     password_error_message = error_message[0]
@@ -229,13 +229,13 @@ def test_reg_page_invalid_password(browser_reg_page):
     print("\n Появилось сообщение об ошибке в выборе пароля ")
    
 
-def test_reg_page_invalid_password(browser_reg_page):
+def test_reg_page_invalid_password_no_letter(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys('12345678')
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(invalid_pass_no_letter)
+    input_field[5].send_keys(invalid_pass_no_letter)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     password_error_message = error_message[0]
@@ -245,13 +245,13 @@ def test_reg_page_invalid_password(browser_reg_page):
     print("\n Появилось сообщение об ошибке в выборе пароля ")
    
 
-def test_reg_page_invalid_password(browser_reg_page):
+def test_reg_page_invalid_password_letter_rus(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys('12345678Д')
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(invalid_pass_letter_rus)
+    input_field[5].send_keys(invalid_pass_letter_rus)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     password_error_message = error_message[0]
@@ -261,13 +261,13 @@ def test_reg_page_invalid_password(browser_reg_page):
     print("\n Появилось сообщение об ошибке в выборе пароля ")
     
 
-def test_reg_page_invalid_password(browser_reg_page):
+def test_reg_page_invalid_password_letter(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys('12345678S')
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(invalid_pass_letter)
+    input_field[5].send_keys(invalid_pass_letter)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     password_error_message = error_message[0]
@@ -279,27 +279,11 @@ def test_reg_page_invalid_password(browser_reg_page):
 
 def test_reg_page_invalid_password(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys('12345678s')
-    input_field[5].send_keys(fake_password)
-    browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
-    error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
-    password_error_message = error_message[0]
-
-    assert password_error_message.text == 'Пароль должен содержать хотя бы одну заглавную букву'
-
-    print("\n Появилось сообщение об ошибке в выборе пароля ")
-   
-
-def test_reg_page_invalid_password(browser_reg_page):
-    input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys('12345678Ss')
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(invalid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     password_error_message = error_message[0]
