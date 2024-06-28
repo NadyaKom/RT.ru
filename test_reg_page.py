@@ -11,11 +11,11 @@ def test_reg_page(browser):
 def test_reg_page_registration(browser_reg_page):
 
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
 
 
@@ -46,7 +46,7 @@ def test_reg_page_allready_reg(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
     input_field[0].send_keys(valid_firstname)
     input_field[1].send_keys(valid_lastname)
-    input_field[3].send_keys(valid_email)
+    input_field[3].send_keys(valid_phone)
     input_field[4].send_keys(valid_pass)
     input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
@@ -57,11 +57,11 @@ def test_reg_page_allready_reg(browser_reg_page):
 
 def test_reg_page_invalid_name_en(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname_en)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(invalid_name_en)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     name_error_message = error_message[0]
@@ -74,11 +74,11 @@ def test_reg_page_invalid_name_en(browser_reg_page):
 
 def test_reg_page_invalid_name_short(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys('д')
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(invalid_name_short)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     name_error_message = error_message[0]
@@ -90,11 +90,26 @@ def test_reg_page_invalid_name_short(browser_reg_page):
 
 def test_reg_page_name_long(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys("абвгдеежзиклмнопрстцфхцчшщъыьэюя")
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(invalid_name_long)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
+    browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
+    error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
+    name_error_message = error_message[0]
+
+    assert name_error_message.text == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.'
+
+    print("\n Появилось сообщение об ошибке ввода имени ")
+
+def test_reg_page_name_number(browser_reg_page):
+    input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
+    input_field[0].send_keys(invalid_name_number)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     name_error_message = error_message[0]
@@ -104,13 +119,13 @@ def test_reg_page_name_long(browser_reg_page):
     print("\n Появилось сообщение об ошибке ввода имени ")
   
 
-def test_reg_page_invalid_lastname(browser_reg_page):
+def test_reg_page_invalid_surname(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname_en)
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(invalid_surname_en)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     last_name_error_message = error_message[0]
@@ -120,13 +135,13 @@ def test_reg_page_invalid_lastname(browser_reg_page):
     print("\n Появилось сообщение об ошибке ввода фамилии ")
 
 
-def test_reg_page_invalid_lastname_short(browser_reg_page):
+def test_reg_page_invalid_surname_short(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys('д')
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(invalid_surname_shor)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     last_name_error_message = error_message[0]
@@ -136,13 +151,28 @@ def test_reg_page_invalid_lastname_short(browser_reg_page):
     print("\n Появилось сообщение об ошибке ввода фамилии ")
 
 
-def test_reg_page_invalid_lastname_long(browser_reg_page):
+def test_reg_page_invalid_surname_long(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys('абвгдеежзиклмнопрстцфхцчшщъыьэюя')
-    input_field[3].send_keys(fake_email)
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(invalid_surname_long)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
+    browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
+    error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
+    lastname_error_message = error_message[0]
+
+    assert lastname_error_message.text == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.'
+
+    print("\n Появилось сообщение об ошибке ввода фамилии ")
+
+def test_reg_page_invalid_surname_number(browser_reg_page):
+    input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(invalid_surname_number)
+    input_field[3].send_keys(valid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     lastname_error_message = error_message[0]
@@ -154,11 +184,26 @@ def test_reg_page_invalid_lastname_long(browser_reg_page):
 
 def test_reg_page_invalid_mail(browser_reg_page):
     input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
-    input_field[0].send_keys(fake_firstname)
-    input_field[1].send_keys(fake_lastname)
-    input_field[3].send_keys('fjtuju')
-    input_field[4].send_keys(fake_password)
-    input_field[5].send_keys(fake_password)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(invalid_email)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
+    browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
+    error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
+    mail_error_message = error_message[0]
+
+    assert  mail_error_message.text == 'Введите телефон в формате +7ХХХХХХХХХХ или +375XXXXXXXXX, или email в формате example@email.ru'
+
+    print("\n Появилось сообщение об ошибке ввода адреса электронной почты или номера мобильного телефона ")
+
+def test_reg_page_invalid_mail(browser_reg_page):
+    input_field = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_INPUT_FIELD)
+    input_field[0].send_keys(valid_name)
+    input_field[1].send_keys(valid_surname)
+    input_field[3].send_keys(invalid_phone)
+    input_field[4].send_keys(valid_pass)
+    input_field[5].send_keys(valid_pass)
     browser_reg_page.find_element(*RegPageLoc.LOCATOR_BUTTON_REGISTRATION).click()
     error_message = browser_reg_page.find_elements(*RegPageLoc.LOCATOR_ERROR_MESS)
     mail_error_message = error_message[0]
