@@ -17,4 +17,6 @@ invalid_pass_short = '12345'
 invalid_pass_no_letter = '12345678'
 invalid_pass_letter = '12345678K'
 invalid_pass_letter_rus = '12345678Kн'
+invalid_pass = 'Zlata2091'
 region = 'Новосибирская обл'
+
